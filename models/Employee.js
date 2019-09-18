@@ -17,7 +17,7 @@ const employeeSchema = new Schema({
   startingDate: Date,
   leavingDate: Date,
   department: {
-    type: [String],
+    type: String,
     enum: ["Sales", "IT", "HR", "Office Management", "Product", "Ops", "Engineering"]
   },
   jobTitle: String,
