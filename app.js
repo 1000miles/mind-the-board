@@ -11,11 +11,22 @@ const path = require('path');
 
 const session = require("express-session");
 const MongoStore = require('connect-mongo')(session);
+<<<<<<< Updated upstream
 const flash = require("connect-flash");
 
 
 mongoose
   .connect('mongodb://localhost/mind-the-board', { useNewUrlParser: true })
+=======
+const flash      = require("connect-flash");
+
+
+mongoose
+  .connect('mongodb://localhost/mind-the-board', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+>>>>>>> Stashed changes
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -61,7 +72,7 @@ hbs.registerHelper('ifUndefined', (value, options) => {
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Mind the Board! Boarding Kit';
 
 
 // Enable authentication using session + passport
