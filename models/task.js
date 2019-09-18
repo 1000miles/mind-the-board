@@ -12,10 +12,11 @@ const tasksSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
-    dueDate: String,
+    created_at: Date,
+    dueDate: Date,
     confirmedDone: Boolean
 });
 
-const user = mongoose.model("User", userSchema);
+const Task = mongoose.model("Task", tasksSchema);
 
-module.exports = user;
+module.exports = Task;

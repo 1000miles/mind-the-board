@@ -84,5 +84,14 @@ app.use('/auth', authRoutes);
 const dashboard = require('./routes/dashboard');
 app.use('/dashboard', dashboard);
 
+const create = require('./routes/create-task');
+app.use('/create-task', create);
+
+const update = require('./routes/update-task');
+app.use('/update-task', update);
+
+const remove = require('./routes/remove-task');
+app.use('/remove-task', remove);
+
 
 module.exports = app;
