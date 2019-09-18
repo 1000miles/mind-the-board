@@ -2,17 +2,15 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   width: 100vh;
-  height: 100vh;
-}
+  height: 100vh; }
 
 a {
-  color: #00B7FF;
-}
+  color: #00B7FF; }
 
 .jumbotron {
   width: 100vw;
   height: 85vh;
   margin: auto;
+  background-color: rgba(0, 0, 0, 0.5); }
 
-  background-color: rgba(0,0,0,0.5);
-}
+/*# sourceMappingURL=style.css.map */
