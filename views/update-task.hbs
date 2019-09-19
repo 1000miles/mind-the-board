@@ -1,35 +1,37 @@
-<h1>Update a new Task</h1>
+<div class="updatedash">
+    <h1>Update a new Task</h1>
 
-<a href="/dashboard">Dashboard</a>
+    <a href="/dashboard">Dashboard</a>
 
-<form action="/update-task/{{currTask._id}}" method="POST">
-    <div class="form-group">
-        <label for="formGroupExampleInput">Task Title</label>
-        <input name="title" type="text" class="form-control" id="formGroupExampleInput" placeholder={{currTask.title}}
-            value={{currTask.title}}>
-    </div>
-    <div class="form-group">
-        <label for="formGroupExampleInput2">Task Description</label>
-        <input name="description" type="text" class="form-control" id="formGroupExampleInput"
-            placeholder={{currTask.description}} value={{currTask.description}}>
-    </div>
+    <form action="/update-task/{{currTask._id}}" method="POST">
+        <div class="form-group">
+            <label for="formGroupExampleInput">Task Title</label>
+            <input name="title" type="text" class="form-control" id="formGroupExampleInput"
+                placeholder={{currTask.title}} value={{currTask.title}}>
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Task Description</label>
+            <input name="description" type="text" class="form-control" id="formGroupExampleInput"
+                placeholder={{currTask.description}} value={{currTask.description}}>
+        </div>
 
 
-    {{#if users}}
-    <div class="form-group">
-        <label for="formGroupExampleInput2">Assignee</label>
-        <select name="assignee" value={{currTask.assignee}}>
-            {{#each users}}
-            <option value={{_id}}>{{username}}</option>
-            {{/each}}
-        </select>
-    </div>
-    {{/if}}
+        {{#if users}}
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Assignee</label>
+            <select name="assignee" value={{currTask.assignee}}>
+                {{#each users}}
+                <option value={{_id}}>{{username}}</option>
+                {{/each}}
+            </select>
+        </div>
+        {{/if}}
 
-    <div class="form-group">
-        <label for="formGroupExampleInput2">Due Date</label>
-        <input name="dueDate" type="date" class="form-control" id="formGroupExampleInput2"
-            placeholder={{currTask.dueDate}} value={{currTask.dueDate}}>
-    </div>
-    <button type="submit">Update</button>
-</form>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Due Date</label>
+            <input name="dueDate" type="date" class="form-control" id="formGroupExampleInput2"
+                placeholder={{currTask.dueDate}} value={{currTask.dueDate}}>
+        </div>
+        <button type="submit">Update</button>
+    </form>
+</div>
