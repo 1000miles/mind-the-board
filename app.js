@@ -13,7 +13,6 @@ const session = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash = require("connect-flash");
 
-
 mongoose
   .connect(process.env.MONGODB_URI || 'mongodb://localhost/mind-the-board')
   .then(x => {
@@ -70,7 +69,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   store: new MongoStore({ mongooseConnection: mongoose.connection })
-}))
+}));
 app.use(flash());
 require('./passport')(app);
 
@@ -92,6 +91,5 @@ app.use('/update-task', update);
 
 const remove = require('./routes/remove-task');
 app.use('/remove-task', remove);
-
 
 module.exports = app;

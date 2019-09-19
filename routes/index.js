@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Task = require('../models/Task')
+const Task = require('../models/Task');
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -8,8 +8,8 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/create-task', (req, res) => {
-  console.log('ROUTE CREATE TASK')
-  const { title, description, owner, assignee, createdat, duedate } = req.body
+  console.log('ROUTE CREATE TASK');
+  const { title, description, owner, assignee, createdat, duedate } = req.body;
   Task.create({
     title,
     description,
@@ -20,10 +20,8 @@ router.post('/create-task', (req, res) => {
     confirmedDone: false
   }).then(newTask => {
     console.log(newTask)
-    res.redirect('/dashboard')
-  }).catch(err => console.log(err))
-})
-
-
+    res.redirect('/dashboard');
+  }).catch(err => console.log(err));
+});
 
 module.exports = router;
