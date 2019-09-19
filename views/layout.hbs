@@ -16,8 +16,8 @@
   <nav>
     <a href="/">Home</a>
     {{#if user }}
-      <a href="/auth/logout">Logout</a> ||
-      <a href="/employees"> Employees (protected)</a>
+      <a href="/auth/logout">| Logout</a><br/>
+      You are logged in as: "{{ user.role }}" <a href="/employees"> > Go to Employees Page</a>
     {{else}}
     <a href="/auth/login">Login</a>
     <a href="/auth/signup">Signup</a>
