@@ -4,7 +4,6 @@ const User = require('../models/User');
 const Employee = require('../models/Employee');
 
 // create a middleware that checks if a user is logged in
-
 const loginCheck = () => {
   return (req, res, next) => {
     // if (req.user)
@@ -19,39 +18,24 @@ const loginCheck = () => {
   };
 };
 
-/* GET home page */
+/* GET employees page */
 router.get("/employees", loginCheck(), (req, res, next) => {
-  // passport
-  const user = req.session.passport.user;
-
-  User.findOne({_id: user})
-    .then( user => {
-      if (user.role === "HR-Admin") {
-        res.render("employees", { user });
-      } else {
-        res.redirect("dashboard", {
-          message: `Permission denied. Please ask HR.`
-        });
-      }
-    })
-    .catch(err => console.log(`employees Page could not be loaded.`, err));
-
-
-});
-
-router.get('/employees/new', loginCheck(), (req, res, next) => {
   const user = req.session.passport.user;
   console.log(user);
 
-  User.findOne( { _id: user })
-    .then((user) => {
-      if (user.role === "HR-Admin") {
-        res.render('employeeForm');
-      } else {
-        res.redirect("dashboard", { message: `Permission denied. Please ask HR.`});
-      }
-    })
-    .catch(err => console.log(`employeeForm could not be loaded.`, err));
+  if (user.role !== "HR-Admin") res.redirect("/dashboard", {
+    message: `Permission denied. Please ask HR.`
+  });
+  res.render("employees", { user });
+});
+
+// GET new employees page
+router.get('/employees/new', loginCheck(), (req, res, next) => {
+  const user = req.session.passport.user;
+
+  // console.log(user);
+  if (user.role !== "HR-Admin") res.redirect("/dashboard", { message: `Permission denied. Please ask HR.`});
+  res.render("employees", { user });
 });
 
 // Create a new employee through the HR-form
@@ -97,7 +81,7 @@ router.post('/employees/new', (req, res) => {
     user: req.user
   }).then(newEmployee => {
     console.log(newEmployee);
-    res.redirect('/employees');
+    res.redirect('/employees')
   }).catch(err => console.log(err));
 });
 
