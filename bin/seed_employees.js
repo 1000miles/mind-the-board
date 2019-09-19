@@ -10,7 +10,7 @@ mongoose
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
   .catch(err => {
-    console.error('Error connecting to mongo', err)
+    console.error('Error connecting to mongo', err);
   });
 
 const employees = [
@@ -18,39 +18,63 @@ const employees = [
     firstName: "Kiran",
     lastName: "Shagoti",
     email: "faker-kiran@email.com",
+    phone: "+49 123 456 789",
+    jobTitle: "Software Engineer",
+    department: "Engineering",
     startingDate: "2019-11-01",
     leavingDate: undefined,
-    department: "Ops",
-    jobTitle: "Software Engineer",
-    role: "Admin",
     confirmed: true,
     contract_signed: true,
+    address: {
+      address1: "Eichhornstrasse 3",
+      address2: "",
+      city: "Berlin",
+      zip: 10785,
+      country: "Germany"
+    },
+    role: "Admin"
   },
   {
     firstName: "Ninette",
     lastName: "Adhikari",
     email: "faker-ninette@email.com",
+    phone: "+41 123 456 789",
+    jobTitle: "HR Teamlead",
+    department: "HR",
     startingDate: "2019-12-01",
     leavingDate: undefined,
-    department: "HR",
-    jobTitle: "HR Teamlead",
-    role: "HR-Admin",
     confirmed: true,
-    contract_signed: true,
+    contract_signed: false,
+    address: {
+      address1: "Mittelweg 22",
+      address2: "",
+      city: "Berlin",
+      zip: 12053,
+      country: "Germany"
+    },
+    role: "HR-Admin"
   },
   {
     firstName: "Steve",
     lastName: "Wright",
     email: "faker-steve@email.com",
+    phone: "+41 123 456 789",
+    jobTitle: "Office Management",
+    department: "Office Management",
     startingDate: "2020-01-01",
     leavingDate: "2020-12-31",
-    department: "Office Management",
-    jobTitle: "Office Management",
-    role: "Employee",
-    confirmed: true,
-    contract_signed: true,
+    confirmed: false,
+    contract_signed: false,
+    address: {
+      address1: "Oranienstrasse 123",
+      address2: "",
+      city: "Berlin",
+      zip: 10999,
+      country: "Germany"
+    },
+    role: "Employee"
   }
-]
+];
 
 Employee.insertMany(employees)
   .then(employee => {

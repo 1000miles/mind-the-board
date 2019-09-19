@@ -14,19 +14,25 @@ const employeeSchema = new Schema({
     type: String,
     required: true
   },
-  startingDate: Date,
-  leavingDate: Date,
+  phone: {
+    type: String
+  },
+  jobTitle: String,
   department: {
     type: String,
     enum: ["Sales", "IT", "HR", "Office Management", "Product", "Ops", "Engineering"]
   },
-  jobTitle: String,
-  role: {
-    type: String,
-    enum: ["Admin", "HR-Admin", "Employee"]
-  },
+  startingDate: Date,
+  leavingDate: Date,
   confirmed: Boolean,
-  contract_signed: Boolean
+  contract_signed: Boolean,
+  address: {
+    address1: String,
+    address2: String,
+    city: String,
+    zip: Number,
+    country: String
+  }
 }, {
   timestamps: {
     createdAt: 'created_at',

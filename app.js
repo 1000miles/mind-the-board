@@ -11,13 +11,6 @@ const path = require('path');
 
 const session = require("express-session");
 const MongoStore = require('connect-mongo')(session);
-<<<<<<< Updated upstream
-const flash = require("connect-flash");
-
-
-mongoose
-  .connect('mongodb://localhost/mind-the-board', { useNewUrlParser: true })
-=======
 const flash      = require("connect-flash");
 
 
@@ -26,7 +19,6 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
->>>>>>> Stashed changes
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -91,6 +83,9 @@ app.use('/', index);
 
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
+
+const employeeRoutes = require('./routes/employee-routes');
+app.use('/', employeeRoutes);
 
 const dashboard = require('./routes/dashboard');
 app.use('/dashboard', dashboard);

@@ -60,10 +60,4 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-/* GET home page */
-router.get('/employee', (req, res, next) => {
-  res.render('employeeForm');
-});
-
-
 module.exports = router;
