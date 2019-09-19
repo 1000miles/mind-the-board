@@ -12,8 +12,7 @@ const tasksSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
-    created_at: Date,
-    dueDate: Date,
+    dueDate: String,
     confirmedDone: Boolean
 });
 

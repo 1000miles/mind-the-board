@@ -1,15 +1,19 @@
 <h1>Welcome to your Dashboard, {{user.username}}</h1>
 
-<a href="/create-task">Create a Task</a>
+<button>
+    <a href="/create-task">Create a Task</a>
+</button>
 
-<a href="/update-task">Update a Task</a>
-
-<a href="/remove-task">Delete a Task</a>
 
 {{#if tasks}}
 {{#each tasks}}
 <h3>{{title}}</h3>
 <p>{{description}}</p>
-<p>{{confirmedDone}}</p>
+<button>
+    <a href="/update-task/{{_id}}">update</a>
+</button>
+<button>
+    <a href="/remove-task/{{_id}}">delete</a>
+</button>
 {{/each}}
 {{/if}}
