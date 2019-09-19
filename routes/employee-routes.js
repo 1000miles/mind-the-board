@@ -19,7 +19,7 @@ const loginCheck = () => {
 };
 
 /* GET employees page */
-router.get("/employees", loginCheck(), (req, res, next) => {
+router.get("/", loginCheck(), (req, res, next) => {
   // const user = req.session.passport.user;
   const user = req.user;
 
@@ -29,24 +29,24 @@ router.get("/employees", loginCheck(), (req, res, next) => {
   console.log(user);
 
   Employee.find().then(employee => {
-    console.log(employee)
-    res.render("employees", {
+    console.log(employee);
+    res.render("employees/all", {
       employeesList: employee
     });
   });
 });
 
 // GET new employees page
-router.get('/employees/new', loginCheck(), (req, res, next) => {
+router.get('/new', loginCheck(), (req, res, next) => {
   const user = req.user;
 
   // console.log(user);
   if (user.role !== "HR-Admin") res.redirect("/dashboard");
-  res.render("employeeForm", { user });
+  res.render("employees/new", { user });
 });
 
 // Create a new employee through the HR-form
-router.post('/employees/new', (req, res) => {
+router.post('/new', (req, res) => {
   console.log('CREATE A NEW TEAM MEMBER');
   const {
     firstName,
@@ -90,6 +90,52 @@ router.post('/employees/new', (req, res) => {
     console.log(newEmployee);
     res.redirect('/employees');
   }).catch(err => console.log(err));
+});
+
+router.get('/:id/update', (req, res, next) => {
+  let employeeId = req.params.id;
+
+  // console.log(employeeId);
+
+  Employee.findById(employeeId)
+  .then(employee => {
+    res.render("employees/edit", { employee });
+  })
+  .catch(err => console.log("error while trying to get employee", err));
+});
+
+router.post('/:id/update', (req, res, next) => {
+  let employeeId = req.params.id;
+
+  // console.log(employeeId);
+
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      jobTitle,
+      department,
+      startingDate,
+      leavingDate,
+      confirmed,
+      contract_signed,
+      address: {
+        address1,
+        address2,
+        zip,
+        city,
+        country
+      }
+    } = req.body;
+
+    Employee.findByIdAndUpdate(employeeId)
+    .then(employee => {
+      res.render("employees/update", {
+        employee
+      });
+    })
+    .catch(err => console.log("error while trying to get employee", err));
 });
 
 module.exports = router;

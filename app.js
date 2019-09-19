@@ -85,7 +85,7 @@ const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 
 const employeeRoutes = require('./routes/employee-routes');
-app.use('/', employeeRoutes);
+app.use('/employees', employeeRoutes);
 
 const dashboard = require('./routes/dashboard');
 app.use('/dashboard', dashboard);
