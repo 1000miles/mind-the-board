@@ -20,13 +20,12 @@ const loginCheck = () => {
 
 /* GET employees page */
 router.get("/employees", loginCheck(), (req, res, next) => {
-  const user = req.session.passport.user;
-  console.log(user);
+  // const user = req.session.passport.user;
+  const user = req.user;
 
-  if (user.role !== "HR-Admin") res.redirect("/dashboard", {
-    message: `Permission denied. Please ask HR.`
-  });
+  if (user.role !== "HR-Admin") res.redirect("/dashboard");
   res.render("employees", { user });
+  console.log(user);
 });
 
 // GET new employees page
@@ -34,7 +33,7 @@ router.get('/employees/new', loginCheck(), (req, res, next) => {
   const user = req.session.passport.user;
 
   // console.log(user);
-  if (user.role !== "HR-Admin") res.redirect("/dashboard", { message: `Permission denied. Please ask HR.`});
+  if (user.role !== "HR-Admin") res.redirect("/dashboard");
   res.render("employees", { user });
 });
 
@@ -81,7 +80,7 @@ router.post('/employees/new', (req, res) => {
     user: req.user
   }).then(newEmployee => {
     console.log(newEmployee);
-    res.redirect('/employees')
+    res.redirect('/employees');
   }).catch(err => console.log(err));
 });
 
