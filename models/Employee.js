@@ -32,7 +32,11 @@ const employeeSchema = new Schema({
     city: String,
     zip: Number,
     country: String
-  }
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User" // 'User' model
+  },
 }, {
   timestamps: {
     createdAt: 'created_at',

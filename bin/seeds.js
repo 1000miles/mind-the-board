@@ -15,19 +15,26 @@ mongoose
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
   .catch(err => {
-    console.error('Error connecting to mongo', err)
+    console.error('Error connecting to mongo', err);
   });
 
 let users = [
   {
     username: "alice",
     password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
+    role: "Employee"
   },
   {
     username: "bob",
     password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
+    role: "HR-Admin"
+  },
+  {
+    username: "till",
+    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
+    role: "Admin"
   }
-]
+];
 
 User.deleteMany()
 .then(() => {
@@ -39,9 +46,9 @@ User.deleteMany()
 })
 .then(() => {
   // Close properly the connection to Mongoose
-  mongoose.disconnect()
+  mongoose.disconnect();
 })
 .catch(err => {
-  mongoose.disconnect()
-  throw err
-})
+  mongoose.disconnect();
+  throw err;
+});
