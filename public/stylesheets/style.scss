@@ -1,8 +1,27 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: grey;
 }
 
 a {
-  color: #00B7FF;
+  color: black;
 }
+
+.maindash {
+  display: flex;
+  flex-direction: column;
+  border: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.createdash {
+  border-radius: 5rem;
+}
+
+.titledescription {}
+
+
+
+
+/*# sourceMappingURL=style.css.map */

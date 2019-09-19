@@ -4,7 +4,7 @@ const User = require('../models/User')
 
 router.get('/', (req, res, next) => {
     User.find().then(allUsers => {
-        res.render('create-task', { users: allUsers });
+        res.render('create-task', { user: req.user, users: allUsers });
     })
 });
 
