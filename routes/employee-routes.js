@@ -23,18 +23,26 @@ router.get("/employees", loginCheck(), (req, res, next) => {
   // const user = req.session.passport.user;
   const user = req.user;
 
+  // Redirect to dashboard if user is not HR-Admin
   if (user.role !== "HR-Admin") res.redirect("/dashboard");
-  res.render("employees", { user });
+
   console.log(user);
+
+  Employee.find().then(employee => {
+    console.log(employee)
+    res.render("employees", {
+      employeesList: employee
+    });
+  });
 });
 
 // GET new employees page
 router.get('/employees/new', loginCheck(), (req, res, next) => {
-  const user = req.session.passport.user;
+  const user = req.user;
 
   // console.log(user);
   if (user.role !== "HR-Admin") res.redirect("/dashboard");
-  res.render("employees", { user });
+  res.render("employeeForm", { user });
 });
 
 // Create a new employee through the HR-form
