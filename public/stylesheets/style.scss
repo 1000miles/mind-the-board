@@ -10,3 +10,50 @@ a {
 .message {
   color: red;
 }
+
+.jumbotron {
+  background-color: rgba(0,0,0,0.2);
+  height: 600px;
+  width: 100%;
+  margin: auto;
+}
+
+#intro {
+  background-image: url("../images/joanna-kosinska-1_CMoFsPfso-unsplash.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  // border: 1px solid green;
+  // display: flex;
+}
+
+.hero {
+  color: #fff;
+  margin: auto;
+  width: 75%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  // border: 1px solid red;
+}
+
+.hero h1 {
+  font-size: 75px;
+  font-family: 'Mansalva', cursive;
+}
+
+.hero h3 {
+  color: rgba(255,255,255,0.5);
+  font-size: 20px;
+}
+
+.hero p {
+  font-family: 'B612 Mono', monospace;
+  color: #fff;
+  margin: 0;
+
+  width: 80%;
+  // border: 1px solid blue;
+}
