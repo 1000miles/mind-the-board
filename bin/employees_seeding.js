@@ -22,7 +22,7 @@ const employees = [
     jobTitle: "Software Engineer",
     department: "Engineering",
     startingDate: "2019-11-01",
-    leavingDate: undefined,
+    leavingDate: null,
     confirmed: true,
     contract_signed: true,
     address: {
@@ -42,7 +42,7 @@ const employees = [
     jobTitle: "HR Teamlead",
     department: "HR",
     startingDate: "2019-12-01",
-    leavingDate: undefined,
+    leavingDate: null,
     confirmed: true,
     contract_signed: false,
     address: {

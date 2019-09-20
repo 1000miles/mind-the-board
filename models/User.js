@@ -6,7 +6,8 @@ const userSchema = new Schema({
   password: String,
   role: {
     type: String,
-    enum: ["Admin", "HR-Admin", "Employee"]
+    enum: ["Admin", "HR-Admin", "Employee"],
+    default: "Employee"
   }
 }, {
   timestamps: {

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Employee = require('../models/Employee');
+const Task = require('../models/Task');
 
 // create a middleware that checks if a user is logged in
 const loginCheck = () => {
@@ -26,7 +27,7 @@ router.get("/", loginCheck(), (req, res, next) => {
   // Redirect to dashboard if user is not HR-Admin
   if (user.role !== "HR-Admin") res.redirect("/dashboard");
 
-  console.log(user);
+  // console.log(user);
 
   Employee.find().then(employee => {
     console.log(employee);
@@ -87,9 +88,59 @@ router.post('/new', (req, res) => {
     },
     user: req.user
   } || {}).then(newEmployee => {
+
+
+
+    // let now = new Date();
+    // let triggerDate = now.getDate() + 7;
+
+    // console.log(triggerDate);
+
+    // if(employee.startingDate === triggerDate && employee.confirmed === true && employee.contract_signed === true){
+
+    //   router.get('/', (req, res, next) => {
+    //     const user = req.user;
+
+    //     User.findById()
+    //       .then(user => {
+    //         res.render('create-task', { users: user });
+    //       })
+    //   //    .catch(err => console.log(`User not found!`, err));
+    //   });
+
+
     console.log(newEmployee);
     res.redirect('/employees');
   }).catch(err => console.log(err));
+
+  // If employee is confirmed, contract_signed and starting date is less than 7 days, create a task
+  // console.log(employee);
+
+
+    // router.post('/create-task', (req, res, next) => {
+    //   const {
+    //     title,
+    //     description,
+    //     owner,
+    //     assignee,
+    //     createdat,
+    //     duedate
+    //   } = req.body;
+
+    //   Task.create({
+    //     title,
+    //     description,
+    //     owner: req.user,
+    //     assignee,
+    //     created_at: createdat,
+    //     dueDate: duedate,
+    //     confirmedDone: false
+    //   }).then(newTask => {
+    //     console.log(newTask);
+    //     res.redirect('/dashboard');
+    //   }).catch(err => console.log(err));
+    // });
+  //}
 });
 
 router.get('/:id/update', (req, res, next) => {
@@ -120,16 +171,19 @@ router.post('/:id/update', (req, res, next) => {
       leavingDate,
       confirmed,
       contract_signed,
-      address: {
-        address1,
-        address2,
-        zip,
-        city,
-        country
-       },
+      address1,
+      address2,
+      zip,
+      city,
+      country
       } = req.body;
 
-    Employee.findByIdAndUpdate(employeeId, {
+      // Fix deprecation warning
+      const options = {
+        useFindAndModify: false
+      };
+
+    Employee.findByIdAndUpdate({_id: employeeId}, {
       firstName,
       lastName,
       email,
@@ -140,17 +194,15 @@ router.post('/:id/update', (req, res, next) => {
       leavingDate,
       confirmed,
       contract_signed,
-      address: {
-        address1,
-        address2,
-        zip,
-        city,
-        country
-      },
-    } || {})
-    .then(() => {
-      // console.log(`EMPLOYEE`, employee);
-      res.redirect("employees");
+      address1,
+      address2,
+      zip,
+      city,
+      country
+    }, options)
+    .then((up) => {
+       console.log(`EMPLOYEE`, up);
+      res.redirect("/employees");
     })
     .catch(err => console.log("error while trying to get employee", err));
 });
@@ -165,7 +217,12 @@ router.get("/:id/delete", (req, res, next) => {
     query.user = req.user._id;
   }
 
-  Employee.findOneAndDelete(query)
+  // Fix deprecation warning
+  const options = {
+    useFindAndModify: false
+  };
+
+  Employee.findOneAndDelete(query, options)
     .then(() => {
       res.redirect("/employees");
     })
