@@ -14,16 +14,18 @@ const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
 
 
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+};
+
 mongoose
-  .connect('mongodb://localhost/mind-the-board', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost/mind-the-board', options)
   .then(x => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
   })
   .catch(err => {
-    console.error('Error connecting to mongo', err)
+    console.error('Error connecting to mongo', err);
   });
 
 const app_name = require('./package.json').name;
