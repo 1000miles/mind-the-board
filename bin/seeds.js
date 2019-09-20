@@ -9,8 +9,13 @@ const User = require("../models/User");
 
 const bcryptSalt = 10;
 
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+};
+
 mongoose
-  .connect('mongodb://localhost/mind-the-board', {useNewUrlParser: true})
+.connect(process.env.MONGODB_URI || 'mongodb://localhost/mind-the-board', options)
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })

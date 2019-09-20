@@ -1,11 +1,13 @@
 const mongoose = require("mongoose");
 const Employee = require("../models/Employee");
 
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+};
+
 mongoose
-  .connect('mongodb://localhost/mind-the-board', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost/mind-the-board', options)
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -83,7 +85,7 @@ Employee.deleteMany()
       .then(employee => {
         console.log("Success! Added " + employee.length + " employees in the collection");
         mongoose.connection.close();
-      })    
+      })
       .catch(err => {
         console.log(err);
       });
