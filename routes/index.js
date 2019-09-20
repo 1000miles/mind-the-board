@@ -24,6 +24,13 @@ router.post('/create-task', (req, res) => {
   }).catch(err => console.log(err))
 })
 
+router.get('/remove-task/:taskId', (req, res) => {
+  const id = req.params.taskId
+  Task.deleteOne({ _id: id }).then(() => {
+    console.log('deleted')
+    res.redirect('/dashboard')
+  }).catch(err => console.log(err))
+})
 
 
 module.exports = router;

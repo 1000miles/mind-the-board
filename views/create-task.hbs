@@ -1,39 +1,35 @@
-<h1>Create a new Task</h1>
+<div class="createdash">
+    <h1>Create a new Task, {{user.username}}</h1>
 
-<a href="/dashboard">Dashboard</a>
+    <a href="/dashboard">Dashboard</a>
 
-<form method="POST" action="/create-task">
-    <div class="form-group">
-        <label for="formGroupExampleInput">Task Title</label>
-        <input name="title" type="text" class="form-control" id="formGroupExampleInput" placeholder="Task Title">
-    </div>
-    <div class="form-group">
-        <label for="formGroupExampleInput2">Task Description</label>
-        <input name="description" type="text" class="form-control" id="formGroupExampleInput" placeholder="Task Title">
-    </div>
-
-
-    {{#if users}}
-    <div class="form-group">
-        <label for="formGroupExampleInput2">Assignee</label>
-        <select name="assignee">
-            {{#each users}}
-            <option value={{_id}}>{{username}}</option>
-            {{/each}}
-        </select>
-    </div>
-    {{/if}}
+    <form method="POST" action="/create-task">
+        <div class="form-group">
+            <label for="formGroupExampleInput">Task Title</label>
+            <input name="title" type="text" class="form-control" id="formGroupExampleInput" placeholder="Task Title">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Task Description</label>
+            <input name="description" type="text" class="form-control" id="formGroupExampleInput"
+                placeholder="Task Title">
+        </div>
 
 
+        {{#if users}}
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Assignee</label>
+            <select name="assignee">
+                {{#each users}}
+                <option value={{_id}}>{{username}}</option>
+                {{/each}}
+            </select>
+        </div>
+        {{/if}}
 
-
-    <div class="form-group">
-        <label for="formGroupExampleInput">Created At</label>
-        <input name="createdat" type="text" class="form-control" id="formGroupExampleInput" placeholder="Created At">
-    </div>
-    <div class="form-group">
-        <label for="formGroupExampleInput2">Due Date</label>
-        <input name="duedate" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Due Date">
-    </div>
-    <button type="submit">Create</button>
-</form>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Due Date</label>
+            <input name="duedate" type="date" class="form-control" id="formGroupExampleInput2" placeholder="Due Date">
+        </div>
+        <button type="submit">Create</button>
+    </form>
+</div>
