@@ -11,7 +11,7 @@ const path = require('path');
 
 const session = require("express-session");
 const MongoStore = require('connect-mongo')(session);
-const flash = require("connect-flash");
+const flash      = require("connect-flash");
 
 const options = {
   useNewUrlParser: true,
@@ -64,7 +64,7 @@ hbs.registerHelper('ifUndefined', (value, options) => {
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Mind the Board!';
 
 
 // Enable authentication using session + passport
@@ -83,6 +83,9 @@ app.use('/', index);
 
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
+
+const employeeRoutes = require('./routes/employee-routes');
+app.use('/employees', employeeRoutes);
 
 const dashboard = require('./routes/dashboard');
 app.use('/dashboard', dashboard);

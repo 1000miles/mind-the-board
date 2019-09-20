@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
+  <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=B612+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/stylesheets/style.css" />
@@ -15,8 +17,9 @@
 
   <nav>
     <a href="/">Home</a>
-    {{#if user}}
-    <a href="/auth/logout">Logout</a>
+    {{#if user }}
+      <a href="/auth/logout">| Logout</a><br/>
+      Logged in as: <strong>{{ user.role }}</strong><a href="/employees"> > Go to Employees Page (protected)</a>
     {{else}}
     <a href="/auth/login">Login</a>
     <a href="/auth/signup">Signup</a>

@@ -1,0 +1,86 @@
+<h1>Employee HR-Form</h1>
+<form action="/employees/new" method="POST">
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="inputFirstName">First Name:</label>
+      <input type="firstName" class="form-control" id="inputFirstName" name="firstName" placeholder="First Name" required>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputLastName">Last Name:</label>
+      <input type="lastName" class="form-control" id="inputLastName" name="lastName" placeholder="Last Name" required>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputEmail">Email:</label>
+      <input type="email" class="form-control" id="inputEmail" name="email" placeholder="jane@doe.com" required>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputPhone">Phone:</label>
+      <input type="phone" class="form-control" id="inputPhone" name="phone" placeholder="+49 123 456 789">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="jobTitle">Job Title:</label>
+      <input class="form-control" type="text" id="jobTitle" name="jobTitle" placeholder="Software Engineer">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="department">Department:</label>
+      <select class="form-control" name="department" required>
+        <option>Engineering</option>
+        <option>HR</option>
+        <option>IT</option>
+        <option>Office Management</option>
+        <option>Ops</option>
+        <option>Prodduct</option>
+        <option>Sales</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-row">
+      <div class="form-group col-md-3">
+        <input class="form-control" type="checkbox" id="confirmed" name="confirmed">
+        <label for="confirmed">Confirmed?</label>
+      </div>
+      <div class="form-group col-md-3">
+        <input class="form-control" type="checkbox" id="contract_signed" name="contract_signed">
+        <label for="contract_signed">Signed?</label>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="startingDate">Starting Date:</label>
+        <input class="form-control" type="date" id="startingDate" name="startingDate">
+      </div>
+      <br />
+      <div class="form-group col-md-3">
+        <label for="leavingDate">Leaving Date:</label>
+        <input class="form-control" type="date" id="leavingDate" name="leavingDate">
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Address 1</label>
+    <input type="text" class="form-control" id="inputAddress" name="address1" placeholder="1234 Main St" required>
+    <br>
+    <label for="inputAddress2">Address 2 (optional)</label>
+    <input type="text" class="form-control" id="inputAddress2" name="address2" placeholder="e.g. Studio">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" id="inputZip" name="zip" required>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity" name="city" required>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputCountry">Country</label>
+      <input type="text" class="form-control" id="inputCountry" name="country" required>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<div class="message">
+  {{#if message }}
+    {{ message }}
+  {{/if }}
+</div>
