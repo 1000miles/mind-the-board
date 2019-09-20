@@ -64,7 +64,7 @@ hbs.registerHelper('ifUndefined', (value, options) => {
 
 
 // default value for title local
-app.locals.title = 'Mind the Board! Boarding Kit';
+app.locals.title = 'Mind the Board!';
 
 
 // Enable authentication using session + passport
