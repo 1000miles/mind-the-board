@@ -1,0 +1,12 @@
+<a href="/dashboard">Dashboard</a>
+<h1>Employees List</h1>
+<a href="/employees/new">Register a new employee</a>
+<div class="container">
+  <div id="employeesList">
+    {{#each employeesList }}
+    <ul>
+      <li>{{this.firstName}} {{this.lastName}} <a href="/employees/{{this._id}}/update">Update</a> | <a href="/employees/{{this._id}}/delete">Delete</a></li>
+    </ul>
+    {{/each }}
+  </div>
+</div>

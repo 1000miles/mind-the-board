@@ -1,0 +1,12 @@
+<h1>Employee Profile</h1>
+<a href="/dashboard">Dashboard</a>
+<a href="/employees/new">Register another new employee</a>
+<div class="container">
+  <div id="employeesList">
+    {{#each employeesList }}
+      <ul>
+        <li> {{this}}</li>
+      </ul>
+    {{/each }}
+  </div>
+</div>
