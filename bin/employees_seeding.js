@@ -79,16 +79,17 @@ const employees = [
 Employee.deleteMany()
   .then(() => {
     console.log(`Deleting all employees`);
+    Employee.insertMany(employees)
+      .then(employee => {
+        console.log("Success! Added " + employee.length + " employees in the collection");
+        mongoose.connection.close();
+      })    
+      .catch(err => {
+        console.log(err);
+      });
   })
   .catch(err => {
     console.log(`Employees could not be deleted.`, err);
   });
 
-Employee.insertMany(employees)
-  .then(employee => {
-    console.log("Success! Added " + employee.length + " employees in the collection");
-    mongoose.connection.close();
-  })
-  .catch(err => {
-    console.log(err);
-  });
+
