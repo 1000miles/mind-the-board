@@ -15,6 +15,7 @@ const tasksSchema = new Schema({
     created_at: Date,
     dueDate: Date,
     confirmedDone: Boolean
+
 });
 
 const Task = mongoose.model("Task", tasksSchema);
