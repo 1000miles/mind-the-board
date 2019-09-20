@@ -29,8 +29,8 @@ const employeeSchema = new Schema({
   address: {
     address1: String,
     address2: String,
-    city: String,
     zip: Number,
+    city: String,
     country: String
   },
   user: {

@@ -30,7 +30,7 @@ router.get("/", loginCheck(), (req, res, next) => {
 
   Employee.find().then(employee => {
     console.log(employee);
-    res.render("employees/all", {
+    res.render("employees/index", {
       employeesList: employee
     });
   });
@@ -86,7 +86,7 @@ router.post('/new', (req, res) => {
       country
     },
     user: req.user
-  }).then(newEmployee => {
+  } || {}).then(newEmployee => {
     console.log(newEmployee);
     res.redirect('/employees');
   }).catch(err => console.log(err));
@@ -99,7 +99,7 @@ router.get('/:id/update', (req, res, next) => {
 
   Employee.findById(employeeId)
   .then(employee => {
-    res.render("employees/edit", { employee });
+    res.render("employees/update", { employee });
   })
   .catch(err => console.log("error while trying to get employee", err));
 });
@@ -126,16 +126,52 @@ router.post('/:id/update', (req, res, next) => {
         zip,
         city,
         country
-      }
-    } = req.body;
+       },
+      } = req.body;
 
-    Employee.findByIdAndUpdate(employeeId)
-    .then(employee => {
-      res.render("employees/update", {
-        employee
-      });
+    Employee.findByIdAndUpdate(employeeId, {
+      firstName,
+      lastName,
+      email,
+      phone,
+      jobTitle,
+      department,
+      startingDate,
+      leavingDate,
+      confirmed,
+      contract_signed,
+      address: {
+        address1,
+        address2,
+        zip,
+        city,
+        country
+      },
+    } || {})
+    .then(() => {
+      // console.log(`EMPLOYEE`, employee);
+      res.redirect("employees");
     })
     .catch(err => console.log("error while trying to get employee", err));
+});
+
+// DELETE single employee
+router.get("/:id/delete", (req, res, next) => {
+  const query = {
+    _id: req.params.id
+  };
+
+  if (req.user.role !== "HR-Admin") {
+    query.user = req.user._id;
+  }
+
+  Employee.findOneAndDelete(query)
+    .then(() => {
+      res.redirect("/employees");
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
 module.exports = router;
